@@ -19,6 +19,7 @@ class GoogleLogin extends Component {
     approvalPrompt: PropTypes.string,
     tag: PropTypes.string,
     autoLoad: React.PropTypes.bool,
+    signInOptions: React.PropTypes.object,
   };
 
   static defaultProps = {
@@ -88,7 +89,7 @@ class GoogleLogin extends Component {
             onFailure(err);
           });
       } else {
-        auth2.signIn()
+        auth2.signIn(this.props.signInOptions)
           .then(res => {
             /*
               offer renamed response keys to names that match use
