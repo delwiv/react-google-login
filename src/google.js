@@ -75,7 +75,7 @@ class GoogleLogin extends Component {
   signIn() {
     if (!this.state.disable) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt } = this.props;
+      const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt, signInOptions } = this.props;
       onRequest();
       if (offline) {
         const options = {
@@ -89,7 +89,7 @@ class GoogleLogin extends Component {
             onFailure(err);
           });
       } else {
-        auth2.signIn(this.props.signInOptions)
+        auth2.signIn(signInOptions)
           .then(res => {
             /*
               offer renamed response keys to names that match use
